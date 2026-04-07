@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<id><![CDATA[Ultimate Marketing Manager - custom feed: skip products without categories]]></id>
+	<name><![CDATA[Ultimate Marketing Manager - custom feed: skip products without categories]]></name>
+	<code>knns-feed-manager-custom-feed-exclude-uncategorized</code>
+	<version>1.0.0</version>
+	<author><![CDATA[<font color="#7F458C"><b>kanenas.net (aka Nikolas Branis)</b></font> - nbran@kanenas.net]]></author>
+	<link>https://kanenas.net/</link>
+	<file path="catalog/controller/extension/feed/custom.php" error="log">
+		<operation error="skip">
+			<search trim="false"><![CDATA[                                //categories]]></search>
+			<add position="replace" offset="5" trim="false"><![CDATA[                                //categories
+                                $product_categories = $this->merchant->getCategories($product_id);
+                                if (empty($product_categories)) {
+                                    continue;
+                                }
+                                $category_path_ids = [];]]></add>
+		</operation>
+	</file>
+</modification>
